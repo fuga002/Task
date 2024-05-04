@@ -1,0 +1,16 @@
+﻿@model ProductDto
+
+@{
+    ViewData["Title"] = "Product ";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div>
+    <h2>Category Details</h2>
+    <p><strong>Name:</strong> @Model.Name</p>
+    <p><strong>Description:</strong> @Model.Description</p>
+    <p><strong>Price:</strong> @Model.Price</p>
+    <p><strong>DateTime:</strong> @Model.CreatedDate.ToString("g")</p>
+    <p><strong>CategoryId:</strong> @Model.CategoryId</p>
+</div>

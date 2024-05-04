@@ -1,0 +1,42 @@
+﻿@model CategoryDto
+
+@{
+    ViewData["Title"] = "Products for " + Model.Name;
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div>
+    <h2>Category Details</h2>
+    <p><strong>Name:</strong> @Model.Name</p>
+    <p><strong>Description:</strong> @Model.Description</p>
+</div>
+
+@if (Model.Products != null && Model.Products.Any())
+{
+    <h2>Products</h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var product in Model.Products)
+        {
+            <tr>
+                <td>@product.Name</td>
+                <td>@product.Description</td>
+                <td>@product.Price</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No products found for this category.</p><br/>
+    <p><a href="@Url.Action("Add", "Product")" class="btn btn-primary">Add Product</a></p>
+}

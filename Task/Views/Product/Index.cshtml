@@ -1,0 +1,86 @@
+﻿@model List<ProductDto>
+@if (@Model != null && @Model.Count != 0)
+{
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Product Table</title>
+        <style>
+            table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+
+            th, td {
+                border: 1px solid black;
+                padding: 8px;
+                text-align: left;
+            }
+
+            th {
+                background-color: #f2f2f2;
+            }
+
+            tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+
+            button {
+                padding: 5px 10px;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>Product Table</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Create Date Time</th>
+                    <th>Add</th>
+                    <th>Get</th>
+                    <th>Update</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var product in @Model)
+                {
+                    <tr>
+                        <td>@product.Id</td>
+                        <td> @product.Name</td>
+                        <td>@product.Description</td>
+                        <td>@product.Price.ToString("N")</td>
+                        <td>@product.CreatedDate.ToString("g")</td>
+                        <td>
+                            <a href="@Url.Action("Add", "Product")" class="btn btn-primary">Add Product</a>
+                        </td>
+                        <td>
+                            <a href="@Url.Action("GetProduct", "Product", new { productId = product.Id })" class="btn btn-primary">Get Product</a>
+                        </td>
+                        <td>
+                            <a href="@Url.Action("Update", "Product",new {productId = product.Id})" class="btn btn-primary">Edit Product</a>
+                        </td>
+                        <td>
+                            <a href="@Url.Action("Delete", "Product",new {productId = product.Id})" class="btn btn-danger">Delete Product</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </body>
+}
+else
+{
+    <h2>There is no products
+        <br/>
+        If you gonna add products, Click the button
+    </h2>
+
+    <a href="@Url.Action("Add", "Product")" class="btn btn-primary">Add Product</a>
+
+}

@@ -1,0 +1,35 @@
+﻿@model CreateCategoryModel
+
+@{
+    ViewBag.Title = "Add Category";
+}
+
+<h2>Add Category</h2>
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @ViewBag.ErrorMessage
+    </div>
+}
+else
+{
+    @using (Html.BeginForm("Add", "Category", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name)
+            @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description)
+            @Html.TextBoxFor(model => model.Description, new { @class = "form-control" })
+        </div>
+        <br/>
+
+        <div class="form-group">
+            <input type="submit" value="Add Category" class="btn btn-primary" />
+        </div>
+    }
+}
